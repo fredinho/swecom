@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="./../template/default.xhtml">
+            <ui:define name="titre"> <h:outputText value="#{bundle.profil}"/> </ui:define>
+             <ui:define name="content">
+                <link href="../resources/css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+                <script src="../resources/js/SpryTabbedPanels.js" type="text/javascript"></script>
+                <h1 style="color: #F5A05A;"> <h:outputText value="#{bundle.profil1}" style="color: #F49F5A;" /> </h1>
+                 <div id="TabbedPanels1" class="TabbedPanels">
+                    <ul class="TabbedPanelsTabGroup">
+                        <li class="TabbedPanelsTab" tabindex="0">#{bundle.parametresgeneraux}</li>
+                        <li class="TabbedPanelsTab" tabindex="0">#{bundle.monemail}</li>
+                        <li class="TabbedPanelsTab" tabindex="0">#{bundle.monpassword}</li>
+                    </ul>
+                     <div class="TabbedPanelsContentGroup">
+                         <div class="TabbedPanelsContent">
+                             <div class="multi-content">
+                                 <h:form>
+                                     
+                                    <p:panel>
+                                        <p:messages  for="grl"/>
+                                        <h:panelGrid columns="3">
+                                
+                                            <h:outputText value="#{bundle.numeroabonne}:"/>
+                                            <h:outputText value="#{abonneBeans.numabonne}" /> <br/>
+                                
+                                            <h:outputText value="#{bundle.nomabonne}:" />
+                                            <h:outputText value="#{abonneBeans.nomabonne}" /><br/>
+
+                                            <h:outputText value="#{bundle.prenomabonne}:"/>
+                                            <h:outputText value="#{abonneBeans.prenomabonne}" /><br/>
+
+                                            <h:outputText value="#{bundle.cniabonne}:"/>
+                                            <h:outputText value="#{abonneBeans.cni}" /><br/>
+
+                                            <h:outputText value="#{bundle.adresseabonne}:"/>
+                                            <h:outputText value="#{abonneBeans.adresse}" /><br/>
+
+                                            <h:outputText value="#{bundle.profession}:"/>
+                                            <h:outputText value="#{abonneBeans.profession}" /><br/>
+                                
+                                            <h:outputText value="#{bundle.prixmensualite}:"/>
+                                            <h:outputText value="#{facesContext.externalContext.sessionMap.get('mensualite')} FCFA"/> <br/>
+
+                                            <h:outputText value="#{bundle.periodicite}:"/>
+                                            <h:outputText value="#{facesContext.externalContext.sessionMap.get('periodicite')}" style="text-transform: uppercase;" /><br/>
+
+                                            <h:outputText value="#{bundle.zoneabonne}:"/>
+                                            <h:outputText value="#{facesContext.externalContext.sessionMap.get('zone')}" /><br/>
+
+                                            <h:outputText value="#{bundle.quartier}:"/>
+                                            <h:outputText value="#{facesContext.externalContext.sessionMap.get('quartier')}" /><br/>
+                                             
+                                            <h:outputText value="#{bundle.nomagence}:"/>
+                                            <h:outputText value="#{facesContext.externalContext.sessionMap.get('agence')}" />     <br/>  
+
+                                            <p:commandButton ajax="true" value="#{bundle.modifier}" onclick="PF('dlg').show();"/>
+                                        </h:panelGrid>     
+                                 </p:panel>
+                         <p:dialog header="#{bundle.titledialoguecoordonnees}" widgetVar="dlg" modal="true"  height="400" width="800">
+                            <h:form>
+                                <p:panel>
+                                    
+                                
+                                <h:message for="RegisterGroupPanel" style="color:red;" />
+                                    <h:panelGrid columns="3">
+                                        <h:outputText value="#{bundle.numeroabonne}"/>: 
+                                <h:inputText readonly="true" value="#{facesContext.externalContext.sessionMap.get('numeroabonne')}" /> 
+
+                                <h:outputText value="#{bundle.nomabonne}" />:
+                                <h:inputText value="#{connexion.nomAbonne}" required="true" requiredMessage="#{bundle.msgNomabonne}"/>
+
+                                <h:outputText value="#{bundle.prenomabonne}"/>:
+                                <h:inputText value="#{connexion.pnomAbonne}" required="true" requiredMessage="#{bundle.msgPrenomabonne}" />
+
+                                <h:outputText value="#{bundle.cniabonne}"/>:
+                                <h:inputText value="#{connexion.cni}" required="true" requiredMessage="#{bundle.msgCNIabonne}" />
+
+                                <h:outputText value="#{bundle.adresseabonne}"/>:
+                                <h:inputText value="#{connexion.adresse}" required="true" requiredMessage="#{bundle.msgadresseabonne}" />
+
+                                <h:outputText value="#{bundle.profession}"/>:
+                                <h:inputText value="#{connexion.profAbonne}" required="true" requiredMessage="#{bundle.msgProfessionabonne}" />
+                                
+                                <h:outputText value="#{bundle.prixmensualite}"/>:
+                                <h:inputText readonly="true" value="#{facesContext.externalContext.sessionMap.get('mensualite')}" />
+                                
+                                <h:outputText value="#{bundle.periodicite}"/>:
+                                <h:inputText readonly="true" value="#{facesContext.externalContext.sessionMap.get('periodicite')}" style="text-transform: uppercase;" />
+                         
+                                <h:outputText value="#{bundle.zoneabonne}"/>:
+                                <h:inputText readonly="true"  value="#{facesContext.externalContext.sessionMap.get('zone')}" />
+
+                                <h:outputText value="#{bundle.quartier}"/>:
+                                <h:inputText readonly="true"  value="#{facesContext.externalContext.sessionMap.get('quartier')}" />
+
+                                <h:outputText value="#{bundle.nomagence}"/>:
+                                <h:inputText readonly="true" value="#{facesContext.externalContext.sessionMap.get('agence')}" />      
+
+                                <p:commandButton ajax="false" value="#{bundle.submit}" action="#{connexion.changeParams1()}" oncomplete="dlg.hide();" update="grl"/>
+                                <p:spacer width="10px"/>
+                                <p:commandButton value="#{bundle.reset}" onclick="dlg.hide();"/>
+                   
+                                    </h:panelGrid>
+                                </p:panel>
+                            </h:form>
+                    </p:dialog>
+                     </h:form>
+                             </div>
+                         </div>
+                         <div class="TabbedPanelsContent">
+                             <div class="multi-content">
+                                 <h:form>
+                  <p:panel style="width: auto; margin:auto; font-family: georgia; font-size: 12pt;">
+                                                                              
+                      <h:outputText value="#{bundle.email}"/>:
+                      <h:outputText value="#{abonneBeans.email}" /><br/>
+                                
+                                <p:commandButton ajax="true" value="#{bundle.modifier}" onclick="PF('dlg1').show();"/>
+                    </p:panel>
+                          <p:dialog header="#{bundle.modifpassword}" widgetVar="dlg1" modal="true" height="200">
+                        <h:form>
+                            <p:panel>
+                                
+                                <h:panelGrid columns="2">
+                                    
+                                    <h:outputText value="#{bundle.passwordactuel}:"/> 
+                                    <h:inputSecret value="#{connexion.emailAbonne}" required="true" requiredMessage="#{bundle.msgPasswordActuel}"/>
+                                
+                                
+                                <h:outputText value="#{bundle.passwordnouvo}:"/> 
+                                <h:inputSecret value="#{connexion.emailnouveau}" required="true" requiredMessage="#{bundle.msgPasswordNouvo}"/>
+                                   
+                                <h:outputText value="#{bundle.msgConfirmPassword}:"/>                                                               
+                                <h:inputSecret value="#{connexion.emailconfirm}" required="true" requiredMessage="#{bundle.msgConfirmPassword}" />
+                                
+                                <p:commandButton ajax="false" value="#{bundle.submit}" action="#{connexion.changeEmail()}" oncomplete="dlg1.hide();" />
+                                <p:commandButton value="#{bundle.reset}" onclick="dlg1.hide();"/>
+                                </h:panelGrid>
+                             </p:panel>
+                         </h:form>
+                    </p:dialog> 
+                      </h:form>
+                             </div>
+                         </div>
+                         <div class="TabbedPanelsContent">
+                             <div class="multi-content">
+                                 <h:form>
+                     <p:panel style="width: auto; margin:auto; font-family: georgia; font-size: 12pt;">
+                         
+                                <h:outputText value="#{bundle.password}"/>:
+                                <h:outputText value="********" /><br/>
+                                
+                                <p:commandButton ajax="true" value="#{bundle.modifier}" onclick="PF('dlg2').show();"/>
+                     </p:panel>
+                         <p:dialog header="#{bundle.modifpassword}" widgetVar="dlg2" modal="true" height="200">
+                        <h:form>
+                            <p:panel>
+                                
+                                <h:panelGrid columns="2">
+                                    
+                                <h:outputText value="#{bundle.passwordactuel}:"/> 
+                                <h:inputSecret value="#{connexion.password}" required="true" requiredMessage="#{bundle.msgPasswordActuel}"/>
+                                
+                                
+                                <h:outputText value="#{bundle.passwordnouvo}:"/> 
+                                <h:inputSecret value="#{connexion.newPassword}" required="true" requiredMessage="#{bundle.msgPasswordNouvo}"/>
+                                   
+                                <h:outputText value="#{bundle.msgConfirmPassword}:"/>                                                               
+                                <h:inputSecret value="#{connexion.newPasswordConfirmation}" required="true" requiredMessage="#{bundle.msgConfirmPassword}" />
+                                
+                                <p:commandButton ajax="false" value="#{bundle.submit}" action="#{connexion.changePassword()}" oncomplete="dlg2.hide();" />
+                                <p:commandButton value="#{bundle.reset}" onclick="dlg2.hide();"/>
+                                </h:panelGrid>
+                             </p:panel>
+                         </h:form>
+                    </p:dialog> 
+                 </h:form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+              <script type="text/javascript">
+                var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+              </script>
+              </ui:define>
+         </ui:composition>
+    </h:body>
+</html>
+

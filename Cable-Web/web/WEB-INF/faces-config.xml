@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+            <application>
+        <locale-config>
+        <default-locale>fr</default-locale>
+        <supported-locale>en_CA</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>ressources/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>  
+            <navigation-rule>
+                <from-view-id>/*</from-view-id>
+                <navigation-case>
+                    <from-outcome>connexion</from-outcome>
+                    <to-view-id>/connexion.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>facturepaiement</from-outcome>
+                    <to-view-id>/Abonne/facture-paiement.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>etatsimpayes</from-outcome>
+                    <to-view-id>/Abonne/Etats-impayes.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>historiquefacture</from-outcome>
+                    <to-view-id>/Abonne/Historique-Statistique.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>incidents</from-outcome>
+                    <to-view-id>/Abonne/incidents.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>mutations</from-outcome>
+                    <to-view-id>/Abonne/mutations.xhtml</to-view-id>
+                </navigation-case>
+                <navigation-case>
+                    <from-outcome>profil</from-outcome>
+                    <to-view-id>/Abonne/profil.xhtml</to-view-id>
+                </navigation-case>                   
+            </navigation-rule>
+</faces-config>

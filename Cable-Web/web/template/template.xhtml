@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{languageBean.locale}"/>
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/StyleAdmin.css" rel="stylesheet" type="text/css" />
+            <!-- Stylesheets: Screen, Projection -->
+    <link href="css/dropdown-layout.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="css/dropdown-style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    
+    <!--[if IE 6]>
+      <script src="javascripts/ie.pngfix.js" type="text/javascript"></script>
+      <script>DD_belatedPNG.fix('li, #logo a, #main, #preview, .post-data span, blockquote, .lightbox-image, .dropcap-circle, .breadcrumbs span.info');</script>
+      <style>li, #footer .nav li a, #sidebar .nav li a {zoom:1}</style>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <style>#showcase .rounded-corners-top, #showcase .rounded-corners-bottom {display: none}</style>
+    <![endif]-->
+
+    <!-- jQuery -->
+    <script src="js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
+ 
+        
+    <!-- Superfish -->
+    <script src="js/jquery.superfish.js" type="text/javascript"></script>
+        <title>Gestion des Abonnés</title>
+    </h:head>
+    
+    <h:body>
+                <c:if  test="#{facesContext.externalContext.sessionMap.get('nom')==null}">
+                    #{facesContext.externalContext.redirect("../connexion.xhtml")}
+                </c:if>
+        <div id="top">
+            <div id="logo">
+                <h2><h:outputText value="#{bundle.choix}" /></h2>
+            </div>
+            
+            
+               <h:form >
+                   <h:commandLink action="#{languageBean.french()}" value="#{bundle.french}" /> |
+                   <h:commandLink action="#{languageBean.english()}" value="#{bundle.english}" />
+               </h:form>
+             
+           
+            
+            <div id="droit"></div>
+        </div>
+            
+        
+
+        
+            <div id="menu">
+                <ul id="topmenu">
+         <li><h:link  outcome="facturepaiement" value="#{bundle.choix}" /></li>
+        <li><a href="../Abonne/facture-paiement.xhtml"></a></li>
+        <li><a href="../Abonne/Etats-impayes.xhtml">Etats des impayés</a></li>
+        <li><a href="../Abonne/Historique-Statistique.xhtml">Historique des paiements</a></li>
+        <li><a href="../Abonne/incidents.xhtml">Gestion des incidents</a></li>
+        <li><a href="../Abonne/profil.xhtml">Mon profil</a></li>
+                </ul>
+                
+            </div>
+        
+
+        <div id="content">
+            <ui:insert name="content"></ui:insert>
+        </div>
+
+        <div id="bottom">
+            <div id="inner-foot"></div>
+        </div>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{languageBean.locale}"/>
+    <h:head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width" name="viewport" />
+        <title><ui:insert name="titre" /></title>
+        
+        <h:outputStylesheet name="bootstrap.css" library="css" />
+        <h:outputStylesheet name="bootstrap-responsive.css" library="css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+        <h:outputScript name="bootstrap.js" library="js"/>
+        <h:outputScript name="html5.js" library="js"/>
+    </h:head>
+    <h:body>
+        <c:if test="#{manager.utilisateur==null}" >
+            #{facesContext.externalContext.redirect("../connexion.xhtml")}
+        </c:if>
+        <div id="wrap">
+            <header class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        
+                        <span class="hidden-phone">
+                            <a target="_blank" href="http://www.swecomplc.com/"> <img src="./../resources/img/logo.png"/></a>
+                        </span>
+                        <div class="nav-collapse collapse" style="height: 0px; "> 
+                             <ul id="top-left-menu" class="nav">
+                                
+                                 <li style="margin-top: 14px; margin-left: 52px;">
+                                     <h:outputText value="#{bundle.emailsupport} : "/> support@swecomplc.com | <h:outputText value="#{bundle.infoline} : "/> <h:outputText value="#{facesContext.externalContext.sessionMap.get('telephone')}"/>
+                                 </li>
+                             </ul>
+                            <ul id="top-right-menu" class="nav pull-right">
+                                <h:form>
+                                    <h:commandLink action="#{languageBean.french()}"> <img title="#{bundle.french}"  src="./../resources/img/lang-fr.png"/></h:commandLink>
+                                    <h:commandLink action="#{languageBean.english()}"><img title="#{bundle.english}" src="./../resources/img/lang-en.png"/></h:commandLink><p:spacer width="25"/>
+                                    <span> <h:outputText value="#{bundle.bonjour} #{connexion.utilisateur.nomcomplet}" /> <h:commandLink action="#{connexion.deconnexion()}"><img title="#{bundle.deconnexion}" src="./../resources/img/deconnexion-hover.png"/></h:commandLink></span>
+                                <br/>
+                                <h:link outcome="etatsimpayes" ><h:outputText style="color: red;" value="#{bundle.montantimpayes} : " /> <h:outputText value=" FCFA" /></h:link>
+                                </h:form>
+                             </ul>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </header>
+            <nav class="navbar-inverse sidebar">
+                <div class="navbar-inner" >
+                    <ul id="menu-accordeon" class="nav">
+                        <li>
+                            <h:link outcome="facturepaiement" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-list icon-large"></i> <h:outputText value="#{bundle.facture}"/> </h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="etatsimpayes" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-suitcase icon-large"></i><h:outputText value="#{bundle.etats}"/></h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="historiquefacture" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-archive icon-large"></i><h:outputText value="#{bundle.historique}"/></h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="incidents" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-exclamation-triangle icon-large"></i><h:outputText value="#{bundle.incidents}"/></h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="mutations" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-arrows-h icon-large"></i><h:outputText value="#{bundle.mutations}"/></h:link>
+                        </li>
+                        <li>
+                            <h:link outcome="profil" class="menu-content hasChild dropdown-close sidebar-item current" ><i class="fa fa-male icon-large"></i><h:outputText value="#{bundle.profil}"/></h:link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="content-container" class="container-fluid">
+                <div class="row-fluid">
+                    <div id="content" class="clearfix">
+                        <div id="inner-content" class="span12">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <ui:insert name="content" id="content" class="span12" ></ui:insert>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="navbar-inverse">
+            <div class="navbar-inner">
+                <div class="footer-content">
+                <h:outputText style="color: black;" value="#{bundle.powered}" />
+                        <a target="_blank" href="http://www.skysoft-tech.com"><h:outputText value="#{bundle.pied}" /></a>
+                </div>
+            </div>
+        </footer>
+    </h:body>
+</html>
+    

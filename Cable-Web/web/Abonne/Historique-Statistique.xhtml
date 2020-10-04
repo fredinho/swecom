@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        
+        <ui:composition template="./../template/default.xhtml">
+            <ui:define name="titre">
+                <h:outputText value="#{bundle.titleHistorique}" />
+            </ui:define>
+            <ui:define name="content">
+                #{lignepaiementBeans.someFactureHistorisque()}
+                <h1 style="color: #F5A05A;"> <h:outputText value="#{bundle.listimpayes}" /> </h1>
+                <h:form styleClass="jsfcrud_list_form" prependId="false">
+                    
+                    <p:dataTable rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" paginatorPosition="bottom" var="fac" value="#{lignepaiementBeans.lignepaiementlist}" paginator="true" rows="12">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.datepaiement}" />
+                            </f:facet>
+                            
+                            <h:outputText value="#{fac.paiement.datepaiement}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column resizable="true">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.numpaiement}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.paiement.numeropaiement}"/>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.montantpaye}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.montantpaiement}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.modepaiement}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.paiement.modepaiement}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.numfac}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.facture.numeroFacture}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.montantinitial}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.montantquittance}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.periodeAnnee}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.periode}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.libelle}" />
+                            </f:facet>
+                            
+                            <h:outputText value="#{fac.libellefacture}"/>
+                            
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.nomagence}" />
+                            </f:facet>
+                            <h:outputText value="#{fac.facture.agence.nomagence}"/>
+                        </p:column>
+                    </p:dataTable>
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

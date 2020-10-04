@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template/default.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titre">
+        <h:outputText value="#{bundle.titremutation}" />
+    </ui:define>
+
+    <ui:define name="content">
+        #{mutationBeans.somemutation()}
+        
+        <h1 style="color: #F5A05A;"> <h:outputText value="#{bundle.titremutation}"/> </h1>
+                <h:form styleClass="jsfcrud_list_form" prependId="false">
+                    
+                    <p:dataTable rowStyleClass="jsfcrud_odd_row,jsfcrud_even_row" var="fac1" value="#{mutationBeans.mutationlist}" paginator="true" paginatorPosition="bottom" rows="12">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.datemutation}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.datemutation}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.numeromutation}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.numeromutation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.typemutation}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.mutation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.motifmutation}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.motifmutation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.soldemutation}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.soldemutation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.nomagence}" />
+                            </f:facet>
+                            <h:outputText value="#{fac1.agence.nomagence}"/>
+                        </p:column>
+                      </p:dataTable>
+                    
+                </h:form>
+    </ui:define>
+
+</ui:composition>
